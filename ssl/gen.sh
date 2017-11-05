@@ -1,4 +1,6 @@
 #!/bin/zsh
+# 创建证书、token和kubeconfig文件
+# 将文件拷贝到服务器上
 
 # 生成证书
 genCert() {
@@ -33,7 +35,6 @@ genConfig() {
     kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 }
 
-
 main() {
     genCert
 
@@ -52,4 +53,4 @@ main() {
     ls | grep -v json | grep -v gen.sh | xargs rm 
 }
 
-main 172.16.221.131
+main 172.16.221.131 172.16.221.130 172.16.221.129
