@@ -1,4 +1,5 @@
 # kube-dns
+dns
 version: 1.14.7
 
 ## 1. 修改kube-dns.yaml.base文件
@@ -14,7 +15,12 @@ version: 1.14.7
 将 image: gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.7 改为 image: wymr/k8s-dns-sidecar-amd64-1.14.7:1.14.7
 ```
 
-## 2. 验证
+## 2. 创建kube-dns
+```
+$ kubectl create -f kube-dns.yaml
+```
+
+## 3. 验证
 ```
 (1). 创建kube-dns-test
 $ kubectl run kube-dns-test --image=busybox --command -- sleep 360000
