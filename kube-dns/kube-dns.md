@@ -22,15 +22,9 @@ $ kubectl create -f kube-dns.yaml
 
 ## 3. 验证
 ```
-(1). 创建kube-dns-test
-$ kubectl run kube-dns-test --image=busybox --command -- sleep 360000
+(1). 使用nslookup测试
+$ kubectl run dns-test -i -t --image=busybox --restart=Never --rm /bin/sh
 
-(2). 进入容器
-$ kubectl get pods
-NAME                             READY     STATUS    RESTARTS   AGE
-kube-dns-test-6f4c58fcf4-kwvvn   1/1       Running   0          15s
-
-$ kubectl exec -i -t kube-dns-test-6f4c58fcf4-kwvvn sh
 $ nslookup example-service
 Server:    10.254.0.2
 Address 1: 10.254.0.2 kube-dns.kube-system.svc.cluster.local
