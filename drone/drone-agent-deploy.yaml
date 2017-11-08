@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: drone-agent
+  labels:
+    k8s-app: drone-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: drone-agent
+  template:
+    metadata:
+      labels:
+        k8s-app: drone-agent
+    spec:
+      volumes:
+      - name: drone
+        hostPath:
+          path: /var/lib/drone/docker.sock 
+      containers:
+      - name: drone-agent
+        image: drone/drone:0.7
+        command: [/drone, agent]
+        env:
+        - name: "DRONE_SERVER"
+          value: "ws://drone-service/ws/broker"
+        - name: "DRONE_SECRET"
+          value: "admin"  
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: drone

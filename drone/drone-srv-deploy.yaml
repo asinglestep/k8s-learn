@@ -1,0 +1,43 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: drone-server
+  labels:
+    k8s-app: drone-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: drone-server
+  template:
+    metadata:
+      labels:
+        k8s-app: drone-server
+    spec:
+      volumes:
+      - name: drone
+        hostPath:
+          path: /var/lib/drone 
+      containers:
+      - name: drone-server
+        image: drone/drone:0.7
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DRONE_OPEN
+          value: "true"
+        - name: DRONE_ADMIN
+          value: liu1536326836
+        - name: DRONE_HOST
+          value: localhost
+        - name: DRONE_GITHUB
+          value: "true"
+        - name: DRONE_GITHUB_CLIENT
+          value: 27194fb67a3def89d3b2
+        - name: DRONE_GITHUB_SECRET
+          value: 143a31be6314e716b7decb1e62e77b80371474c3
+        - name: DRONE_SECRET
+          value: admin
+        volumeMounts:
+        - mountPath: /var/lib/drone/
+          name: drone
