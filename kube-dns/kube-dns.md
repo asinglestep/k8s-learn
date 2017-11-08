@@ -8,11 +8,11 @@ version: 1.14.7
 
 将所有的 __PILLAR__DNS__SERVER__ 替换成 10.254.0.2
 
-将 image: gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.7 改为 image: wymr/k8s-dns-kube-dns-amd64-1.14.7:1.14.7
+将 image: gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.7 改为 image: singlestep/k8s-dns-kube-dns-amd64-1.14.7:1.14.7
 
-将 image: gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.7 改为 image: wymr/k8s-dns-dnsmasq-nanny-amd64-1.14.7:1.14.7
+将 image: gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.7 改为 image: singlestep/k8s-dns-dnsmasq-nanny-amd64-1.14.7:1.14.7
 
-将 image: gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.7 改为 image: wymr/k8s-dns-sidecar-amd64-1.14.7:1.14.7
+将 image: gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.7 改为 image: singlestep/k8s-dns-sidecar-amd64-1.14.7:1.14.7
 ```
 
 ## 2. 创建kube-dns
