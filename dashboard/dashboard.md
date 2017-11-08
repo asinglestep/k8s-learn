@@ -8,9 +8,9 @@ wget https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/re
 
 ## 2. 修改kubernetes-dashboard.yaml文件
 ```
-将 gcr.io/google_containers/kubernetes-dashboard-init-amd64:v1.0.1 改为 index.tenxcloud.com/jimmy/kubernetes-dashboard-init-amd64:v1.0.1
+将 gcr.io/google_containers/kubernetes-dashboard-init-amd64:v1.0.1 改为 singlestep/kubernetes-dashboard-init-amd64:v1.0.1
 
-将 gcr.io/google_containers/kubernetes-dashboard-amd64:v1.7.1 改为 index.tenxcloud.com/jimmy/kubernetes-dashboard-amd64:v1.7.1
+将 gcr.io/google_containers/kubernetes-dashboard-amd64:v1.7.1 改为 singlestep/kubernetes-dashboard-amd64:v1.7.1
 ```
 
 ## 3. 创建kubernetes-dashboard

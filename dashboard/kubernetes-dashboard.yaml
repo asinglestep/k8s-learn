@@ -101,13 +101,13 @@ spec:
     spec:
       initContainers:
       - name: kubernetes-dashboard-init
-        image: index.tenxcloud.com/jimmy/kubernetes-dashboard-init-amd64:v1.0.1
+        image: singlestep/kubernetes-dashboard-init-amd64:v1.0.1
         volumeMounts:
         - name: kubernetes-dashboard-certs
           mountPath: /certs
       containers:
       - name: kubernetes-dashboard
-        image: index.tenxcloud.com/jimmy/kubernetes-dashboard-amd64:v1.7.1
+        image: singlestep/kubernetes-dashboard-amd64:v1.7.1
         ports:
         - containerPort: 8443
           protocol: TCP
