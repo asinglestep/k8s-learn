@@ -20,7 +20,7 @@ spec:
       serviceAccountName: heapster
       containers:
       - name: heapster
-        image: oceanbow/heapster-amd64-v1.4.0:v1.4.0
+        image: singlestep/heapster-amd64-v1.4.0:v1.4.0
         imagePullPolicy: IfNotPresent
         command:
         - /heapster

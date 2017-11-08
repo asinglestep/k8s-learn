@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: oceanbow/heapster-influxdb-amd64-v1.3.3:v1.3.3
+        image: singlestep/heapster-influxdb-amd64-v1.3.3:v1.3.3
         volumeMounts:
         - mountPath: /data
           name: influxdb-storage

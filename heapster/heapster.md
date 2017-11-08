@@ -13,7 +13,7 @@ heapster-rbac.yaml在$GOPATH/src/github.com/kubernetes/heapster/deploy/kube-conf
 ## 2. 启动grafana
 ### (1). 修改grafana.yaml
 ```
-将 gcr.io/google_containers/heapster-grafana-amd64:v4.4.3 改为 oceanbow/heapster-grafana-amd64-v4.4.3:v4.4.3
+将 gcr.io/google_containers/heapster-grafana-amd64:v4.4.3 改为 singlestep/heapster-grafana-amd64-v4.4.3:v4.4.3
 ```
 
 ### (2). 创建grafana
@@ -24,7 +24,7 @@ $ kubectl create -f grafana.yaml
 ## 3. 启动heapster
 ### (1). 修改heapster.yaml文件
 ```
-将 gcr.io/google_containers/heapster-amd64:v1.4.0 改为 oceanbow/heapster-amd64-v1.4.0:v1.4.0
+将 gcr.io/google_containers/heapster-amd64:v1.4.0 改为 singlestep/heapster-amd64-v1.4.0:v1.4.0
 ```
 
 ### (2). 创建heapster
@@ -36,7 +36,7 @@ $ kubectl create -f heapster.yaml
 ## 4. 启动influxdb
 ### (1). 修改influxdb.yaml文件
 ```
-将 gcr.io/google_containers/heapster-influxdb-amd64:v1.3.3 改为 oceanbow/heapster-influxdb-amd64-v1.3.3:v1.3.3
+将 gcr.io/google_containers/heapster-influxdb-amd64:v1.3.3 改为 singlestep/heapster-influxdb-amd64-v1.3.3:v1.3.3
 ```
 
 ### (2). 创建influxdb
