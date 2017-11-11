@@ -7,8 +7,14 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 80
+  - name: http
+    protocol: TCP
+    port: 80
     targetPort: 8000
+  - name: grpc
+    protocol: TCP
+    port: 9000
+    targetPort: 9000
   selector:
     k8s-app: drone-server
 ---
@@ -34,9 +40,12 @@ spec:
           path: /var/lib/drone 
       containers:
       - name: drone-server
-        image: drone/drone:0.7
+        image: drone/drone:0.8
         ports:
         - containerPort: 8000
+          protocol: TCP
+        - containerPort: 9000
+          protocol: TCP
         env:
         - name: DRONE_OPEN
           value: "true"
