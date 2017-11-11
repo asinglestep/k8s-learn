@@ -36,6 +36,11 @@ genConfig() {
 }
 
 main() {
+    if [[ ! -n $@ ]];then 
+        echo "Usage: main [ip]"
+        exit
+    fi
+
     genCert
 
     genToken
@@ -46,6 +51,7 @@ main() {
 
     for ip in $@
     do
+        ssh root@$ip 'mkdir -p /etc/k8s/ssl'
         scp k8s.tar root@$ip:/etc/k8s/ssl
         ssh root@$ip 'cd /etc/k8s/ssl && tar xf k8s.tar && mv *.kubeconfig token.csv ../ && rm k8s.tar'
     done
