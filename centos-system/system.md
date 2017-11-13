@@ -1,4 +1,39 @@
-# 为kube-apiserver、kube-controller-manager、kube-scheduler、kubelet、kube-proxy创建serivce配置文件
+# 1. 为etcd创建serivce配置文件
+## (1). /usr/lib/systemd/system/etcd.service
+```
+[Unit]
+Description=Etcd Server
+After=network.target
+After=network-online.target
+Wants=network-online.target
+Documentation=https://github.com/coreos
+
+[Service]
+Type=notify
+WorkingDirectory=/var/lib/etcd/
+EnvironmentFile=-/etc/etcd/etcd.conf
+ExecStart=/usr/local/bin/etcd \
+  --listen-client-urls ${ETCD_LISTEN_CLIENT_URLS} \
+  --advertise-client-urls ${ETCD_ADVERTISE_CLIENT_URLS}
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## (2). /etc/etcd/etcd.conf
+```
+# [member]
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+
+#[cluster]
+ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
+```
+
+# 2. 为kube-apiserver、kube-controller-manager、kube-scheduler、kubelet、kube-proxy创建serivce配置文件
 
 ## 0. /etc/kubernetes/config
 ```
@@ -243,4 +278,11 @@ WantedBy=multi-user.target
 
 # Add your own!
 KUBE_PROXY_ARGS="--bind-address=172.16.252.6 --hostname-override=172.16.252.6 --kubeconfig=/etc/k8s/kube-proxy.kubeconfig --cluster-cidr=10.254.0.0/16"
+```
+
+## 6. 启动
+```
+systemctl daemon-reload 
+systemctl enable kube-apiserver.service kube-controller-manager.service kube-proxy.service kube-scheduler.service kubelet.service 
+systemctl start kube-apiserver.service kube-controller-manager.service kube-scheduler.service kubelet.service kube-proxy.service
 ```
